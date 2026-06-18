@@ -207,7 +207,7 @@ function renderCategory(catKey) {
   const c = catByKey(catKey);
   const cur = curatedOf(catKey);
   const top = el('div.topbar', [
-    el('button.iconbtn', { onclick: renderHome }, '‹'),
+    el('button.iconbtn', { onclick: renderHome }, '‹ 戻る'),
     el('div.brand', { style: { fontSize: '20px' } }, [GENRE_MARK[catKey] + '　' + c.name]),
   ]);
   const intro = el('div.card', [el('div.muted', { style: { fontSize: '13px', lineHeight: '1.7' } }, c.desc)]);
@@ -247,7 +247,7 @@ function renderPuzzle(puz, opts) {
   let usedHint = false, hintsShown = 0, done = false;
 
   const top = el('div.topbar', [
-    el('button.iconbtn', { onclick: opts.back }, '‹'),
+    el('button.iconbtn', { onclick: opts.back }, '‹ 戻る'),
     el('div.spacer'),
     opts.seq ? el('div.chip', opts.seq) : null,
     el('div.chip', { class: 'muted' }, opts.backLabel || '戻る'),
@@ -349,7 +349,7 @@ function renderPuzzle(puz, opts) {
 /* ============================ SPEED ============================ */
 function renderSpeedIntro() {
   const st = getState();
-  const top = el('div.topbar', [el('button.iconbtn', { onclick: renderHome }, '‹'), el('div.brand', { style: { fontSize: '20px' } }, '速　速読訓練')]);
+  const top = el('div.topbar', [el('button.iconbtn', { onclick: renderHome }, '‹ 戻る'), el('div.brand', { style: { fontSize: '20px' } }, '速　速読訓練')]);
   const hero = el('div.hero', [
     el('div.filetab', '訓練'),
     el('div.eyebrow', 'TIME ATTACK'),
@@ -418,7 +418,7 @@ function renderSpeedResult(score) {
 
 /* ============================ TECHNIQUES ============================ */
 function renderTechList() {
-  const top = el('div.topbar', [el('button.iconbtn', { onclick: renderHome }, '‹'), el('div.brand', { style: { fontSize: '20px' } }, '心　捜査の心得')]);
+  const top = el('div.topbar', [el('button.iconbtn', { onclick: renderHome }, '‹ 戻る'), el('div.brand', { style: { fontSize: '20px' } }, '心　捜査の心得')]);
   const intro = el('div.card', [el('div.muted', { style: { fontSize: '13px', lineHeight: '1.7' } }, '謎解きは才能でなく「型」。崩し方を知るほど、見た瞬間に手が動く。気になる項を読み、最後に事件で試せ。')]);
   const list = el('div.card.plist', { style: { marginTop: '12px' } }, TECHNIQUES.map((t, i) =>
     el('button.prow', { onclick: () => renderTech(t.id) }, [
@@ -435,7 +435,7 @@ function renderTech(id, opt) {
   const idx = TECHNIQUES.findIndex((x) => x.id === id);
   const nx = TECHNIQUES[idx + 1];
   const backTo = opt && opt.from === 'brief' ? renderBriefing : renderTechList;
-  const top = el('div.topbar', [el('button.iconbtn', { onclick: backTo }, '‹'), el('div.chip', { class: 'muted' }, t.tag)]);
+  const top = el('div.topbar', [el('button.iconbtn', { onclick: backTo }, '‹ 戻る'), el('div.chip', { class: 'muted' }, t.tag)]);
   const head = el('div.hero', [el('div.eyebrow', `心得 其ノ ${idx + 1}`), el('div.techhead', t.title), el('p', { style: { margin: '8px 0 0' } }, t.one)]);
   const body = el('div.card', { style: { marginTop: '14px' } }, [
     el('div.tblock', [el('div.lbl', '── コツ ──'), el('ul', t.points.map((p) => el('li', p)))]),
@@ -454,7 +454,7 @@ function renderTech(id, opt) {
 function renderBadges() {
   const st = getState();
   const got = BADGES.filter((b) => b.on(st)).length;
-  const top = el('div.topbar', [el('button.iconbtn', { onclick: renderHome }, '‹'), el('div.brand', { style: { fontSize: '20px' } }, '章　勲章・実績')]);
+  const top = el('div.topbar', [el('button.iconbtn', { onclick: renderHome }, '‹ 戻る'), el('div.brand', { style: { fontSize: '20px' } }, '章　勲章・実績')]);
   const intro = el('div.card', [el('div.muted', { style: { fontSize: '13px', lineHeight: '1.7' } }, `獲得 ${got} / ${BADGES.length}。事件を解くほど勲章が増える。空欄を全部埋めろ。`)]);
   const grid = el('div.card.plist', { style: { marginTop: '12px' } }, BADGES.map((b) => {
     const on = b.on(st);
