@@ -153,7 +153,7 @@ function renderHome() {
   const links = el('div.linkrow', [
     el('button', { onclick: () => { if (confirm('捜査記録をすべて消去しますか？')) { resetAll(); renderHome(); toast('記録を消去しました'); } } }, '記録をリセット'),
     el('button', { onclick: () => { location.href = './legacy_jigatama/index.html'; } }, '旧・地頭ジム'),
-    el('span', { class: 'muted', style: { fontSize: '11px', letterSpacing: '1px' } }, '古典版 ‧ 0618e'),
+    el('span', { class: 'muted', style: { fontSize: '11px', letterSpacing: '1px' } }, '古典版 ‧ 0618f'),
   ]);
 
   setScreen(el('div', [
@@ -214,14 +214,19 @@ function renderCategory(catKey) {
   const kids = [top, intro];
   if (c.generated) kids.push(el('button.btn', { style: { marginTop: '14px' }, onclick: () => genAndShow(catKey) }, '新しい事件を生成  →'));
   if (cur.length) {
-    kids.push(el('div.section-title', c.generated ? '名作ファイル' : '事件ファイル'));
-    kids.push(el('div.card.plist', cur.map((p, i) =>
+    const rows = (list) => el('div.card.plist', list.map((p) =>
       el('button.prow', { onclick: () => renderPuzzle(p, { next: () => nextCurated(catKey, p.id), back: () => renderCategory(catKey), backLabel: c.name }) }, [
-        el('div.no', isSolved(p.id) ? el('span.check', '✓') : String(i + 1).padStart(2, '0')),
+        el('div.no', isSolved(p.id) ? el('span.check', '✓') : '◆'),
         el('div.col', { style: { flex: 1 } }, [el('div.t', p.title), el('div.diff', stars(p.level))]),
         el('div.arrow', { class: 'muted' }, '›'),
       ])
-    )));
+    ));
+    const honkaku = cur.filter((p) => p.level >= 4).sort((a, b) => b.level - a.level);
+    const futsu = cur.filter((p) => p.level === 3);
+    const shokyu = cur.filter((p) => p.level <= 2);
+    if (honkaku.length) { kids.push(el('div.section-title', '本格 ─ 松丸系の手応え')); kids.push(rows(honkaku)); }
+    if (futsu.length) { kids.push(el('div.section-title', '中級')); kids.push(rows(futsu)); }
+    if (shokyu.length) { kids.push(el('div.section-title', '初級 ─ 肩慣らし')); kids.push(rows(shokyu)); }
   }
   kids.push(el('div.bottomgap'));
   setScreen(el('div', kids));
