@@ -1,0 +1,14 @@
+{
+  "name": "地頭ジム — 考える力を鍛える",
+  "short_name": "地頭ジム",
+  "description": "謎解き・計算・思考の型・記憶の4本柱で地頭を鍛える毎日のトレーニング。",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0b1020",
+  "theme_color": "#0b1020",
+  "icons": [
+    { "src": "./icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}

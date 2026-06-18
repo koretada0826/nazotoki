@@ -1,0 +1,14 @@
+{
+  "name": "ナゾトキ — ひらめき・暗号・推理",
+  "short_name": "ナゾトキ",
+  "description": "ひらめき・暗号・推理の謎を解いて、解く速さとテクニックを鍛える謎解き特化アプリ。",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0a0a12",
+  "theme_color": "#0a0a12",
+  "icons": [
+    { "src": "./icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}

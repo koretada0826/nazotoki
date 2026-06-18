@@ -1,0 +1,5 @@
+*.zip
+server.py
+README.md
+.DS_Store
+__pycache__
