@@ -153,7 +153,7 @@ function renderHome() {
   const links = el('div.linkrow', [
     el('button', { onclick: () => { if (confirm('捜査記録をすべて消去しますか？')) { resetAll(); renderHome(); toast('記録を消去しました'); } } }, '記録をリセット'),
     el('button', { onclick: () => { location.href = './legacy_jigatama/index.html'; } }, '旧・地頭ジム'),
-    el('span', { class: 'muted', style: { fontSize: '11px', letterSpacing: '1px' } }, '古典版 ‧ 0618g'),
+    el('span', { class: 'muted', style: { fontSize: '11px', letterSpacing: '1px' } }, '古典版 ‧ 0618h'),
   ]);
 
   setScreen(el('div', [
@@ -316,6 +316,11 @@ function renderPuzzle(puz, opts) {
       } }, [el('span.mk', MK[idx]), el('span', ch)]));
     });
     area.appendChild(box);
+    area.appendChild(el('button.btn.line', { style: { marginTop: '12px' }, onclick: () => {
+      if (done) return;
+      [...box.children].forEach((b, i) => b.classList.add(i === puz.answerIndex ? 'correct' : 'dim'));
+      revealAnswer();
+    } }, '答えを見る（降参）'));
   } else if (puz.type === 'input') {
     const allDigits = puz.answers.every((a) => /^[0-9]+$/.test(a));
     const inp = el('input.txtin', { type: 'text', inputmode: allDigits ? 'numeric' : 'text', autocomplete: 'off', autocapitalize: 'off', spellcheck: 'false', placeholder: '解答を記入' });
