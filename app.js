@@ -153,7 +153,7 @@ function renderHome() {
   const links = el('div.linkrow', [
     el('button', { onclick: () => { if (confirm('捜査記録をすべて消去しますか？')) { resetAll(); renderHome(); toast('記録を消去しました'); } } }, '記録をリセット'),
     el('button', { onclick: () => { location.href = './legacy_jigatama/index.html'; } }, '旧・地頭ジム'),
-    el('span', { class: 'muted', style: { fontSize: '11px', letterSpacing: '1px' } }, '古典版 ‧ 0618f'),
+    el('span', { class: 'muted', style: { fontSize: '11px', letterSpacing: '1px' } }, '古典版 ‧ 0618g'),
   ]);
 
   setScreen(el('div', [
